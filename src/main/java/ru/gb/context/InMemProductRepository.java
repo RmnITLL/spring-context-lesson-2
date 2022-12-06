@@ -1,5 +1,6 @@
 package ru.gb.context;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -8,7 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class InMemProductRepository {
+@Primary
+public class InMemProductRepository implements ProductRepository {
 
     List<Product> products;
 
@@ -21,6 +23,7 @@ public class InMemProductRepository {
         ));
     }
 
+    @Override
     public Product findById(Long id) {
         return products.stream().filter(p -> p.getId().equals(id)).findFirst().orElseThrow(() -> new RuntimeException());
     }

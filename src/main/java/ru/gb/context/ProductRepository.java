@@ -3,7 +3,8 @@ package ru.gb.context;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProductRepository {
+public interface ProductRepository {
+    Product findById(Long id);
 
-   // List<Product> p
+
 }
